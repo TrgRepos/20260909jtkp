@@ -1,0 +1,20 @@
+---
+description: Users module boundary
+globs: modules/users/**
+alwaysApply: false
+---
+
+# Users module boundary
+
+- Code under `modules/users/**` must never import directly from
+  `modules/profiles/src/**`. Cross-module data must go through
+  `modules/shared/src/**` or an HTTP call to the profiles module's own
+  routes - never a direct source import.
+- Do not add a dependency on Express route internals from another
+  module; only import `Router` from `express` itself.
+- New exported functions in `modules/users/src/controllers/**` must
+  have a corresponding test in `modules/users/tests/**` before a diff
+  touching them is considered done.
+- Follow the existing pattern in this module: routes wire paths only,
+  controllers hold logic, validators are separate middleware, `sendError`
+  from `@shared/utils/http` is the only way to return an error body.

@@ -1,0 +1,11 @@
+# Secrets & credentials - never read/edited by any AI feature.
+.env
+.env.*
+!.env.example
+
+**/secrets/**
+**/keys/**
+*.pem
+*.key
+secrets.json
+credentials.json

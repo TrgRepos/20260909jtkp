@@ -1,0 +1,22 @@
+---
+description: Profiles module boundary
+globs: modules/profiles/**
+alwaysApply: false
+---
+
+# Profiles module boundary
+
+- Code under `modules/profiles/**` must never import directly from
+  `modules/users/src/**`. If profile logic needs user data, reference it
+  through `modules/shared/src/**` or an HTTP call - never a direct
+  source import across the module line.
+- Any change to `modules/profiles/src/validators/profiles.validator.ts`
+  must be accompanied by a test in `modules/profiles/tests/**` covering
+  both an accepted and a rejected case for the specific rule changed.
+- Postal-code validation must account for `country` - never apply a
+  single hard-coded regex to every country. This is a known area of
+  risk in this module; treat any postal-code validation change as
+  security/correctness sensitive and request a narrow, reviewable diff.
+- Follow the existing pattern in this module: routes wire paths only,
+  controllers hold logic, validators are separate middleware, `sendError`
+  from `@shared/utils/http` is the only way to return an error body.

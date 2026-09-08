@@ -1,0 +1,9 @@
+# Indexing / search exclusions only - nothing here is secret.
+node_modules/
+dist/
+build/
+coverage/
+*.log
+.DS_Store
+.vscode/
+.idea/

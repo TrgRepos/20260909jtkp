@@ -1,0 +1,14 @@
+---
+description: Shared module conventions
+globs: modules/shared/**
+alwaysApply: false
+---
+
+# Shared module conventions
+
+- `modules/shared/**` may be imported by any other module. It must
+  never import from `modules/users/**` or `modules/profiles/**` -
+  shared code has no knowledge of any single module's business logic.
+- Keep exports generic (HTTP helpers, primitive types). Do not add a
+  `User` or `Profile` type here - business types stay owned by their
+  module.

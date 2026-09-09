@@ -2,7 +2,16 @@
   "mcpServers": {
     "staging-postgres": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-postgres", "${env:STAGING_DATABASE_URL}"]
+      "args": [
+        "-y",
+        "envmcp",
+        "--env-file",
+        "${workspaceFolder}/.env",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "$STAGING_DATABASE_URL"
+      ]
     },
     "sample-github": {
       "command": "npx",
